@@ -23,9 +23,9 @@ app.get("/todo", async(peticion,respuesta) => {
         
         //esperamos la vuelta de la promesa de getTareas y guardamos su resultado en tareas
         let tareas = await getTareas();
-
-        //mapeamos el objeto del array tareas para devolver un objeto con la propiedad _id y la propiedad tareas
-        tareas = tareas.map(({_id,tareas}) => {return {id: _id,tareas}});
+        
+        //
+        tareas = tareas.map(({_id,tarea,terminada}) => {return {id: _id,tarea,terminada}});
 
         respuesta.json(tareas);
 
@@ -47,10 +47,11 @@ app.post("/todo/crear", async (peticion,respuesta,siguiente) => {
 
             //esperamos la vuelta de la promesa de crearTarea y guardamos el id creado
             let id = await crearTarea({tarea});
-
+            
             //si se crea bien la tarea se envía una respuesta JSON que contiene el nuevo id
-            return respuesta.json({id});
+            return respuesta.json(id);
 
+            
         }catch(error){
             respuesta.status(500);
             return respuesta.json(error);

@@ -27,13 +27,14 @@ function getTareas(){
 
             //obtenemos lo que se encuentra en la BBDD y lo convertimos a un Array
             let tareas = await todo.find({}).toArray(); //retorna una promesa
-
+            
             //cortamos la conexión
             conexion.close();
 
             //se cumple la promesa con la lista de tareas como argumento
             fulfill(tareas);
-
+            
+            
         }catch(error){//si hay algún error saldremos por aquí
             
             reject({error : "error en BBDD"});
@@ -53,6 +54,8 @@ function crearTarea(tarea){ //extraemos la tarea de peticion.body
             
             tarea.terminada = false;
 
+            console.log(tarea)
+            
             //esperamos a que la operación insertOne se realize antes de seguir, al final extraemos el id
             let {insertedId} = await todo.insertOne(tarea);
 

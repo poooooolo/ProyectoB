@@ -75,7 +75,7 @@ app.put("/todo/actualizar/:id([a-f0-9]{24})/:operacion(1|2)", async (peticion,re
     let {tarea} = peticion.body;
 
     //si la operación no es 1 salta al catch
-    if(operacion == 1 && (!tarea || tarea.trim() == "")){ //compruebo tarea en negativo, si falla, me da verdadero, si está es falso
+    if(operacion == 1 && (!tarea || tarea.trim() == "")){ //compruebo tarea en negativo, si falla, me da verdadero, si esta es falso
        
         return siguiente({ error : "falta el argumento tarea en el objeto JSON" }); 
     }

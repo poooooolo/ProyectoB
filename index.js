@@ -14,7 +14,7 @@ app.use(cors());
 app.use(json());
 
 //usamos este middleware al inicio para ver si funcionan las conexiones
-// app.use("/probamos", express.static("./pruebas"));
+app.use("/probamos", express.static("./pruebas"));
 
 //manejamos en este middleware todas las solicitudes GET a la ruta /todo
 app.get("/todo", async(peticion,respuesta) => {
